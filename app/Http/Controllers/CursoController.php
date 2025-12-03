@@ -57,15 +57,25 @@ class CursoController extends Controller
      */
     public function edit(Curso $curso)
     {
-        //
+        return view('curso.update', ['curso' => $curso]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Curso $curso)
+    public function update(Cursorequest $request, Curso $curso)
     {
-        //
+        $atualizou = $curso->update([
+            'name' => $request['name'],
+            'description' => $request['description']
+        ]);
+
+        if ($atualizou) {
+            return redirect()->route('curso.index')->with('success', 'Curso atualizado com sucesso!!');
+        }
+        else {
+            return redirect()->route('curso.index')->with('error', 'Não foi possível atualizar esse curso!!');
+        }
     }
 
     /**

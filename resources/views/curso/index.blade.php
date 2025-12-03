@@ -15,13 +15,13 @@
                 <a href="{{ route('curso.create') }}" class="btn btn-primary">Cadastrar Curso</a>
                 </div>
                 @if (session('success'))
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success mt-2" role="alert">
                     {{ session('success') }}
                 </div>
                 @endif
 
                 @if (session('error'))
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger mt-2" role="alert">
                     {{ session('error') }}
                 </div>
                 @endif
@@ -40,8 +40,8 @@
                             <td>{{ $curso->name }}</td>
                             <td>{{ $curso->description }}</td>
                             <td>
-                                <button class="btn btn-success">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
+                                <a href=" {{ route('curso.edit', $curso->id) }}" class="btn btn-success">Editar</a>
+                                <a href=" {{ route('curso.destroy', $curso->id) }}" class="btn btn-danger">Excluir</a>
                             </td>
                         </tr>
                         @endforeach
