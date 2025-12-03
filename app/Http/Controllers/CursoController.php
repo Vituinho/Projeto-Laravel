@@ -31,7 +31,17 @@ class CursoController extends Controller
      */
     public function store(CursoRequest $request)
     {
-        dd("Passou");
+        $curso = Curso::create([
+            'name' => $request['name'],
+            'description' => $request['description']
+        ]);
+
+        if ($curso) {
+            return redirect()->route('curso.index')->with('success', 'Curso cadastrado com sucesso!!');
+        }
+        else {
+            return redirect()->route('curso.index')->with('error', 'Não foi possível cadastrar esse curso!!');
+        }
     }
 
     /**
