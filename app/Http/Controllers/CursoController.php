@@ -83,6 +83,13 @@ class CursoController extends Controller
      */
     public function destroy(Curso $curso)
     {
-        //
+        $deletou = $curso->delete();
+
+        if ($deletou) {
+            return redirect()->route('curso.index')->with('success', 'Curso removido com sucesso!!');
+        }
+        else {
+            return redirect()->route('curso.index')->with('error', 'Não foi possível remover esse curso!!');
+        }
     }
 }
